@@ -8,7 +8,7 @@ write stores.
 ## Tech Stack
 
 | Layer            | Technologies                                     |
-|------------------|--------------------------------------------------|
+| ---------------- | ------------------------------------------------ |
 | Backend          | NestJS, TypeScript, Mongoose                     |
 | Frontend         | React 19, TypeScript, shadcn/ui, Tailwind CSS v4 |
 | Databases        | MongoDB 7, ClickHouse 24.3, Redis 7              |
@@ -22,8 +22,9 @@ write stores.
 ## Quick Start
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/vladikEmmet/promocode-test-assignment.git
 cd promo-manager
+cp ./backend/.env.example .env
 docker-compose up --build
 ```
 
@@ -44,7 +45,7 @@ npm run seed
 Test accounts after seed:
 
 | Email          | Password    |
-|----------------|-------------|
+| -------------- | ----------- |
 | alice@test.com | password123 |
 | bob@test.com   | password123 |
 
@@ -82,7 +83,7 @@ MongoDB is never called when reading analytics.
 ### ClickHouse Tables
 
 | Table          | Engine             | Purpose                                               |
-|----------------|--------------------|-------------------------------------------------------|
+| -------------- | ------------------ | ----------------------------------------------------- |
 | `users`        | ReplacingMergeTree | Users. Deduplicated by `updated_at` on merge          |
 | `promocodes`   | ReplacingMergeTree | Promocodes. Deduplicated by `updated_at` on merge     |
 | `orders`       | MergeTree          | Orders. Partitioned by month (`toYYYYMM(created_at)`) |
@@ -150,7 +151,7 @@ All parameters are passed via ClickHouse client `query_params` — no string int
 ### Auth
 
 | Method | URL                  | Description          |
-|--------|----------------------|----------------------|
+| ------ | -------------------- | -------------------- |
 | POST   | `/api/auth/register` | Register a new user  |
 | POST   | `/api/auth/login`    | Login                |
 | POST   | `/api/auth/refresh`  | Refresh access token |
@@ -159,7 +160,7 @@ All parameters are passed via ClickHouse client `query_params` — no string int
 ### Users
 
 | Method | URL              | Description     |
-|--------|------------------|-----------------|
+| ------ | ---------------- | --------------- |
 | GET    | `/api/users`     | List all users  |
 | GET    | `/api/users/:id` | Get user by ID  |
 | PATCH  | `/api/users/:id` | Update user     |
@@ -168,7 +169,7 @@ All parameters are passed via ClickHouse client `query_params` — no string int
 ### Promocodes
 
 | Method | URL                   | Description          |
-|--------|-----------------------|----------------------|
+| ------ | --------------------- | -------------------- |
 | POST   | `/api/promocodes`     | Create promocode     |
 | GET    | `/api/promocodes`     | List all promocodes  |
 | GET    | `/api/promocodes/:id` | Get promocode by ID  |
@@ -178,7 +179,7 @@ All parameters are passed via ClickHouse client `query_params` — no string int
 ### Orders
 
 | Method | URL                               | Description              |
-|--------|-----------------------------------|--------------------------|
+| ------ | --------------------------------- | ------------------------ |
 | POST   | `/api/orders`                     | Create order             |
 | GET    | `/api/orders/my`                  | Get my orders            |
 | POST   | `/api/orders/:id/apply-promocode` | Apply promocode to order |
@@ -186,7 +187,7 @@ All parameters are passed via ClickHouse client `query_params` — no string int
 ### Analytics (ClickHouse)
 
 | Method | URL                           | Description                 |
-|--------|-------------------------------|-----------------------------|
+| ------ | ----------------------------- | --------------------------- |
 | GET    | `/api/analytics/users`        | Users with aggregated stats |
 | GET    | `/api/analytics/promocodes`   | Promocodes with metrics     |
 | GET    | `/api/analytics/promo-usages` | Promocode usage history     |
