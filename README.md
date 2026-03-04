@@ -24,7 +24,7 @@ write stores.
 ```bash
 git clone https://github.com/vladikEmmet/promocode-test-assignment.git
 cd promo-manager
-cp ./backend/.env.example .env
+cp ./backend/.env.example ./backend/.env
 docker-compose up --build
 ```
 
